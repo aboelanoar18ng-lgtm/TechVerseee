@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="ar" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>حضارة مصر القديمة - Ancient Egypt</title>
+    
+    <!-- Importing a nice Arabic Font (Cairo) -->
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;700;900&display=swap" rel="stylesheet">
+
+    <style>
+        /* --- General Reset & Theme --- */
+        :root {
+            --primary-gold: #d4af37; /* Metallic Gold */
+            --dark-gold: #aa8c2c;
+            --bg-black: #0f0f0f;
+            --bg-card: #1a1a1a;
+            --text-white: #f0f0f0;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Cairo', sans-serif;
+            background-color: var(--bg-black);
+            color: var(--text-white);
+            line-height: 1.8;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        /* --- Header & Nav --- */
+        header {
+            background-color: rgba(0, 0, 0, 0.9);
+            border-bottom: 3px solid var(--primary-gold);
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            text-align: center;
+        }
+
+        .logo {
+            font-size: 2rem;
+            font-weight: 900;
+            color: var(--primary-gold);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-top: 15px;
+            gap: 20px;
+        }
+
+        nav a {
+            color: var(--text-white);
+            font-weight: 700;
+            transition: color 0.3s;
+        }
+
+        nav a:hover {
+            color: var(--primary-gold);
+        }
+
+        /* --- Hero Section --- */
+        .hero {
+            height: 80vh;
+            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('hero_bg.jpg'); /* Optional hero bg */
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            border-bottom: 5px solid var(--primary-gold);
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            color: var(--primary-gold);
+            text-shadow: 2px 2px 10px #000;
+            margin-bottom: 20px;
+        }
+
+        .hero p {
+            font-size: 1.5rem;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* --- Sections Layout --- */
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 60px 20px;
+        }
+
+        section {
+            margin-bottom: 40px;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            color: var(--primary-gold);
+            margin-bottom: 40px;
+            position: relative;
+            padding-bottom: 15px;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 4px;
+            background-color: var(--primary-gold);
+        }
+
+        /* --- Content Styling --- */
+        .content-wrapper {
+            background-color: var(--bg-card);
+            padding: 30px;
+            border-radius: 8px;
+            border: 1px solid #333;
+            margin-bottom: 50px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.5);
+        }
+
+        .content-wrapper h2 {
+            color: var(--primary-gold);
+            margin-bottom: 20px;
+        }
+
+        /* --- Image Styling (Golden Frame) --- */
+        .image-frame {
+            display: block;
+            margin: 30px auto;
+            max-width: 100%;
+            height: auto;
+            border: 8px solid var(--primary-gold);
+            border-radius: 4px;
+            box-shadow: 0 0 20px rgba(212, 175, 55, 0.3), inset 0 0 20px rgba(0,0,0,0.8);
+            transition: transform 0.3s ease;
+        }
+
+        .image-frame:hover {
+            transform: scale(1.02);
+            box-shadow: 0 0 30px rgba(212, 175, 55, 0.6);
+        }
+
+        .caption {
+            text-align: center;
+            font-style: italic;
+            color: #aaa;
+            margin-top: -20px;
+            margin-bottom: 30px;
+            display: block;
+        }
+
+        /* --- Gallery Grid --- */
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+
+        .gallery-item {
+            position: relative;
+            overflow: hidden;
+            border: 2px solid var(--dark-gold);
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            display: block;
+            transition: transform 0.4s;
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.1);
+        }
+
+        .gallery-caption {
+            position: absolute;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.8);
+            color: var(--primary-gold);
+            width: 100%;
+            padding: 10px;
+            text-align: center;
+            font-size: 0.9rem;
+        }
+
+        /* --- Footer --- */
+        footer {
+            background-color: #000;
+            color: #777;
+            text-align: center;
+            padding: 30px 0;
+            border-top: 1px solid var(--primary-gold);
+            margin-top: 50px;
+        }
+
+        /* --- Responsive --- */
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 2.5rem; }
+            .section-title { font-size: 2rem; }
+            nav ul { gap: 10px; }
+            .logo { font-size: 1.5rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header -->
+    <header>
+        <div class="logo">Ancient Egypt</div>
+        <nav>
+            <ul>
+                <li><a href="#intro">Introduction</a></li>
+                <li><a href="#daily-life">Daily life</a></li>
+                <li><a href="#religion">religion</a></li>
+                <li><a href="#architecture">Innovation</a></li>
+                <li><a href="#science">science</a></li>
+                <li><a href="#pharaohs">pharaohs</a></li>
+                
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <div class="hero">
+        <div>
+            <h1> Ancient Egyptian civilization </h1>
+            <p>A journey through time to discover the secrets of the pharaohs and pyramids.</p>
+        </div>
+    </div>
+
+    <div class="container">
+
+        <!-- Introduction -->
+        <section id="intro">
+            <h2 class="section-title">Introduction</h2>
+            <div class="content-wrapper">
+                <p>Ancient Egyptian civilization is considered one of the greatest civilizations in human history. It originated on the banks of the Nile more than five thousand years ago and managed to build an organized society based on science, work, and faith. It was not just a civilization of monuments and pyramids, but a complete model of a powerful state with a sophisticated administrative system, profound religious thought, and engineering and scientific achievements that were centuries ahead of their time. Ancient Egypt laid the foundations of human civilization and influenced many peoples who came after it, making it a milestone in world history</p>
+                <!-- Image Placeholder -->
+                <img src="https://www.alfetra.ma/wp-content/uploads/2017/11/%D8%AD%D8%B6%D8%A7%D8%B1%D8%A9-%D9%85%D8%B5%D8%B1-%D8%A7%D9%84%D9%82%D8%AF%D9%8A%D9%85%D8%A9-1.jpg" alt="معركة قديمة" class="image-frame">
+            </div>
+        </section>
+
+        <!-- Daily Life -->
+        <section id="daily-life">
+            <h2 class="section-title">Daily Life </h2>
+            <div class="content-wrapper">
+                <p>Daily life in ancient Egypt was organized and depended mainly on the Nile River, which provided water, food, and transportation. The Egyptians relied on agriculture, growing wheat, barley, and vegetables, and took advantage of the annual flooding of the Nile, which renewed the fertility of the soil. In addition to agriculture, crafts and industries such as pottery, weaving, gold smithing, and shipbuilding flourished </p>
+                <p> Society was organized into classes, headed by the pharaoh, followed by priests, scribes, soldiers, craftsmen, and peasants. Scribes played an important role in recording transactions and science using hieroglyphic writing. The ancient Egyptians were concerned with personal hygiene and wore clothes made of linen. Their diet was simple, consisting of bread, fish, and vegetables. This daily life reflects a social stability and a precise system that contributed to the civilization's longevity for many centuries.</p>
+                <!-- Image Placeholder -->
+                <img src="https://images.akhbarelyom.com/images/images/large/20241212114259561.jpg" alt="حياة يومية" class="image-frame">
+            </div>
+        </section>
+
+        <!-- Religion -->
+        <section id="religion">
+            <h2 class="section-title"> Religion</h2>
+            <div class="content-wrapper">
+                <p> Religion occupied a central place in the lives of the ancient Egyptians, who believed in multiple gods representing the forces of nature and life. They worshipped Ra as the sun god and source of life, believed that Osiris ruled the underworld, while Isis embodied motherhood and protection, and Horus represented strength and royal legitimacy</p>
+                <p> This belief was reflected in the construction of huge temples and the performance of religious rituals, and was also evident in their interest in the idea of life after death, as they mummified the dead and built tombs to protect the body and soul. Religion was linked to morality and order, as they believed that justice and truth were the basis for the continuation of the universe.</p>
+
+                <p> Myths were linked to religion and were a means of explaining the origin of the universe and the struggle between good and evil. Egyptian myths dealt with the story of Osiris and his struggle with Set, which embodied the idea of the triumph of good and justice. They also spoke of the creation of the world from the first waters and the gradual emergence of life.
+</p>
+                <p> These stories were not just fairy tales, but rather an expression of a profound philosophical view of life, death, and nature. Through them, the ancient Egyptians were able to explain natural phenomena and reinforce moral values in society</p>
+
+                <!-- Image Placeholder -->
+                <img src="https://cdn.ida2at.com/media/2017/02/Meresimen_osiris_quatre_fils_four_sons_horus_Louvre_N4024.jpg" alt="الآلهة المصرية" class="image-frame">
+            </div>
+        </section>
+
+        <!-- Architecture -->
+        <section id="architecture">
+            <h2 class="section-title">Engineering and Scientific Innovation</h2>
+            <div class="content-wrapper">
+                <p>Ancient Egyptian civilization demonstrated remarkable engineering and scientific progress, as clearly evidenced by the construction of the Pyramids of Giza, an architectural marvel based on precise mathematical and astronomical calculations. The construction of these monumental structures was not a random undertaking, but rather the result of careful planning and organization.</p>
+                <p>The Egyptians also excelled in medicine, recording therapeutic prescriptions and performing simple surgical procedures, reflecting an early understanding of the human body. In astronomy, they developed a solar calendar consisting of 365 days, which is the basis of the modern calendar. They also invented hieroglyphic writing, which helped preserve science and knowledge and pass it on through generations.</p>
+                <!-- Image Placeholder -->
+                <img src="https://www.sawtbeirut.com/wp-content/uploads/2023/03/3-Pyramids-4-800x549.jpg" alt="أهرامات الجيزة" class="image-frame">
+                <img src="https://gate.ahram.org.eg/Media/News/2024/6/2/19_2024-638529408333524910-352.jpg" alt="معبد قديم" class="image-frame">
+            </div>
+        </section>
+
+        <!-- Science -->
+        <section id="science">
+            <h2 class="section-title">Science and inventions </h2>
+            <div class="content-wrapper">
+            <p>The ancient Egyptians were known for their scientific curiosity and desire to understand the world around them, which led to a number of innovations and discoveries that were thousands of years ahead of their time. In mathematics, they used numbers and geometry to solve problems in construction and agriculture, such as calculating land area, estimating grain volume, and measuring pyramids with astonishing accuracy
+            </p>
+            <p>In medicine, the Egyptians developed advanced treatment methods, using herbs and medicinal plants to treat diseases and performing simple surgeries to set broken bones and treat wounds. They recorded this knowledge on papyrus so that it could be passed on to future generations.
+</p>
+            <p>They also excelled in astronomy, observing the movement of the sun, moon, and stars to determine the agricultural seasons and develop a 365-day solar calendar, which later formed the basis of humanity's knowledge of time.
+</p>
+            <p>In addition, they made practical inventions for everyday life, such as agricultural tools, irrigation devices, utensils, weaving, and papyrus paper manufacturing, all of which reflect the ancient Egyptians' ability to combine scientific innovation with practical application.</p>
+              <p>These scientific achievements were not limited to Egypt alone, but influenced other civilizations and contributed to the advancement of humanity in general, making ancient Egyptian civilization a true example of early science and sustainable innovation.</p> 
+            <!-- Image Placeholder -->
+                <img src="https://modo3.com/thumbs/fit630x300/82128/1480977770/%D9%88%D8%B1%D9%82_%D8%A7%D9%84%D8%A8%D8%B1%D8%AF%D9%89.jpg" alt="أدوات علمية قديمة" class="image-frame">
+            </div>
+        </section>
+
+        <!-- pharaoh -->
+        <section id="pharaoh">
+            <h2 class="section-title">pharaoh</h2>
+            <div class="content-wrapper">
+            <p>nnovation The pharaoh was a symbol of power and sovereignty in ancient Egypt. He was not just a king, but was considered the embodiment of God on earth and the guardian of his people. His authority was absolute, encompassing all areas of life, from politics and administration to religion and culture. The pharaoh was responsible for maintaining order and justice, protecting the country from enemies, and organizing agriculture and irrigation to ensure the prosperity of society.
+</p>
+            <p>In addition to political power, the pharaoh was a religious leader, leading rituals, participating in the construction of temples, and dedicating himself to the gods to ensure their satisfaction and the continued divine protection of the land and people. Among the most famous pharaohs who left an indelible mark on history are Khufu, who ordered the construction of the Great Pyramid of Giza; Ramses II, who was distinguished by the strength of his army and his architectural achievements; and Tutankhamun, known for his golden tomb, which revealed the secrets of Egyptian civilization to the modern world.</p>
+            <p>The pharaoh was also a patron of science and art, encouraging scribes and craftsmen to develop knowledge and techniques, and overseeing the implementation of major projects such as the construction of temples, tombs, and pyramids, making his role central to the development of Egyptian civilization. He was not merely a ruler, but a symbol of national unity and the creative spirit of society. The pharaoh's personality and enlightened rule played a fundamental role in bringing Egyptian civilization to new heights of scientific and artistic progress.</p>
+
+
+                <!-- Image Placeholder -->
+                <img src="https://www.sawtbeirut.com/wp-content/uploads/2022/05/22-2-800x549.jpg" alt="تمثال فرعون" class="image-frame">
+            </div>
+        </section>
+
+        <!-- Gallery -->
+        <section id="gallery">
+            <h2 class="section-title">Team Work (TechVerse Egypt)</h2>
+
+             <!-- Image Placeholder -->
+                <img src="WhatsApp Image 2026-02-11 at 4.26.13 AM.jpeg" alt="فريق العمل" class="image-frame">
+            </div>
+        </section>
+
+
+
+
+
+
+
+
+
+
+
+            
