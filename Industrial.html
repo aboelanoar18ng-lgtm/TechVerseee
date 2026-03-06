@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>الثورة الصناعية | Industrial Revolution</title>
+    <!-- Importing a modern Arabic font from Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;700;900&display=swap" rel="stylesheet">
+    <style>
+        /* --- CSS Variables & Reset --- */
+        :root {
+            --bg-color: #121212;
+            --card-bg: #1e1e1e;
+            --text-color: #e0e0e0;
+            --accent-color: #ff6600; /* Industrial Orange */
+            --secondary-accent: #f37521; /* Steel Blue */
+            --font-main: 'Cairo', sans-serif;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: var(--font-main);
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* --- Navigation --- */
+        nav {
+            background-color: rgba(18, 18, 18, 0.95);
+            padding: 1rem 5%;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 2px solid var(--accent-color);
+            backdrop-filter: blur(5px);
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 900;
+            color: var(--accent-color);
+        }
+
+        .nav-links {
+            list-style: none;
+            display: flex;
+            gap: 20px;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-color);
+            font-weight: 700;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--accent-color);
+        }
+
+        /* --- Hero Section --- */
+        header {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('https://images.unsplash.com/photo-1596707328672-229234232223?q=80&w=1920&auto=format&fit=crop');
+            background-size: cover;
+            background-position: center;
+            padding: 0 20px;
+        }
+
+        header h1 {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+            color: var(--accent-color);
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.8);
+        }
+
+        header p {
+            font-size: 1.5rem;
+            max-width: 800px;
+        }
+
+        /* --- Sections General --- */
+        section {
+            padding: 80px 10%;
+            min-height: 80vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        h2 {
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+            color: var(--secondary-accent);
+            border-right: 5px solid var(--accent-color);
+            padding-right: 15px;
+        }
+
+        /* --- Introduction --- */
+        .intro-content {
+            font-size: 1.2rem;
+            text-align: justify;
+            background: var(--card-bg);
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+        }
+
+        /* --- Topics Grid --- */
+        .topics-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .topic-card {
+            background-color: var(--card-bg);
+            border-radius: 15px;
+            overflow: hidden;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border: 1px solid #333;
+        }
+
+        .topic-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 20px rgba(255, 152, 0, 0.2);
+        }
+
+        .topic-card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .card-content {
+            padding: 20px;
+        }
+
+        .card-content h3 {
+            color: var(--accent-color);
+            margin-bottom: 10px;
+            font-size: 1.5rem;
+        }
+
+        /* --- Gallery --- */
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+        }
+
+        .gallery-item {
+            position: relative;
+            overflow: hidden;
+            border-radius: 8px;
+            height: 200px;
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.1);
+        }
+
+        /* --- Footer --- */
+        footer {
+            background-color: #000;
+            text-align: center;
+            padding: 20px;
+            color: #777;
+            font-size: 0.9rem;
+        }
+
+        /* --- Animations --- */
+        .hidden {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease-out;
+        }
+
+        .show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* --- Mobile Responsive --- */
+        @media (max-width: 768px) {
+            header h1 { font-size: 2.5rem; }
+            .nav-links { display: none; } /* Simplified for this demo */
+            section { padding: 60px 5%; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navigation -->
+    <nav>
+        <div class="logo">الثورة الصناعية</div>
+        <ul class="nav-links">
+            <li><a href="#intro">المقدمة</a></li>
+            <li><a href="#topics">المحاور</a></li>
+           
+    </nav>
+
+    <!-- Hero Header -->
+    <header>
+        <h1>الثورة الصناعية</h1>
+        <p>كيف غيّرت الآلات مسار التاريخ وبنّت العالم الحديث</p>
+    </header>
+
+    <!-- Introduction Section -->
+    <section id="intro" class="hidden">
+        <h2>ما هي الثورة الصناعية؟</h2>
+        <div class="intro-content">
+            <p>
+                تشير الثورة الصناعية إلى الفترة الزمنية التي بدأت في منتصف القرن الثامن عشر في بريطانيا، وتميزت بالانتقال من الاعتماد على العمل اليدوي والحرفي إلى الاعتماد على الآلات والمصانع. لم يكن هذا التغيير مجرد تطور تقني، بل كان تحولاً جذرياً في نمط الحياة البشرية.
+            </p>
+            <br>
+            <p>
+                أدت هذه الثورة إلى زيادة هائلة في الإنتاج، وتحسن في وسائل النقل والمواصلات، ونمو المدن، وتغير في البنية الاجتماعية والاقتصادية للعالم بأسره. لقد وضعت حجر الأساس للعالم الصناعي الذي نعيش فيه اليوم.
+            </p>
+        </div>
+    </section>
+
+    <!-- Topics Section -->
+    <section id="topics" class="hidden">
+        <h2>أهم محاور الثورة الصناعية</h2>
+        <div class="topics-grid">
+            
+            <!-- Topic 1: Steam Engine -->
+             
+           <a href="https://en.wikipedia.org/wiki/Second_Industrial_Revolution">
+            <div class="topic-card">
+                
+                    <img src="https://i0.wp.com/albukhari.com/wp-content/uploads/2026/01/1f15da61-6ac3-4c09-8d21-38bbb7ad1f21.jpg?resize=1024%2C585&ssl=1" alt="محرك بخاري">
+                <div class="card-content">
+                    <h3>المحرك البحري</h3>
+                    <p>
+روبرت فلتون (Robert Fulton) المخترع الأبرز في مجال التصنيع البحري خلال الثورة الصناعية، حيث أطلق أول خدمة منتظمة للسفن البخارية التجارية عام 1807 على نهر هدسون                    </p>
+                </div>
+
+            </div>
+                </a>
+
+            <!-- Topic 2: Mechanization -->
+             <a href="https://en.wikipedia.org/wiki/Textile_manufacture_during_the_British_Industrial_Revolution">
+            <div class="topic-card">
+                <img src="https://www.independentarabia.com/sites/default/files/article/mainimage/2024/10/08/1070957-1276112731.jpg" alt="التصنيع الميكانيكي">
+                <div class="card-content">
+                    <h3>التصنيع الميكانيكي</h3>
+                    <p>
+                        أدى استخدام الآلات في المصانع إلى إنتاج سلع بكميات ضخمة وسرعة فائقة مقارنة بالحرفيين. ظهرت مصانع النسيج كرائدة في هذا المجال، حيث استبدلت الغزل والنسيج اليدوي بغزل الآلات، مما أدى لانخفاض تكاليف الإنتاج بشكل كبير.
+                    </p>
+                </div>
+            </div>
+                </a>
+         
+                <!-- Topic 3: Railways -->
+             <a href="https://ar.wikipedia.org/wiki/%D8%A7%D9%84%D8%AB%D9%88%D8%B1%D8%A9_%D8%A7%D9%84%D8%B5%D9%86%D8%A7%D8%B9%D9%8A%D8%A9_%D8%A7%D9%84%D8%AB%D8%A7%D9%86%D9%8A%D8%A9">
+            <div class="topic-card">
+                <img src="https://images.unsplash.com/photo-1474487548417-781cb71495f3?q=80&w=800&auto=format&fit=crop" alt="السكك الحديدية">
+                <div class="card-content">
+                    <h3>السكك الحديدية</h3>
+                    <p>
+                        أحدثت السكك الحديدية ثورة في النقل والمواصلات. سمحت القطارات البخارية بنقل البضائع والركاب بسرعة وأمان لمسافات طويلة، مما سهل التجارة بين المدن والدول، وساهم في توسع المدن الصناعية وربط الأسواق ببعضها.
+                    </p>
+                </div>
+            </div>
+             </a>
+       
+            </div>
+    </section>
+
+  
+    <!-- Footer -->
+    <footer>
+        <p>2026 متحف التطور التكنولوجي &copy; مشروع تخرج</p>
+    </footer>
+
+    <!-- JavaScript for Animations -->
+    <script>
+        // Smooth Scrolling for Navigation Links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Intersection Observer for Fade-in Animation
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach((entry) => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('show');
+                }
+            });
+        });
+
+        const hiddenElements = document.querySelectorAll('.hidden');
+        hiddenElements.forEach((el) => observer.observe(el));
+    </script>
+</body>
+</html>
