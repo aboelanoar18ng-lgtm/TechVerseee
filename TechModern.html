@@ -1,0 +1,473 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>مستقبل التكنولوجيا - Future of Technology 2050</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Cairo', sans-serif;
+            line-height: 1.8;
+            overflow-x: hidden;
+            background: linear-gradient(135deg, #0c0c0c 0%, #1a1a2e 50%, #16213e 100%);
+            color: #ffffff;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(12, 12, 12, 0.95);
+            backdrop-filter: blur(20px);
+            z-index: 1000;
+            padding: 1rem 0;
+            transition: all 0.3s ease;
+        }
+
+        nav.scrolled {
+            background: rgba(12, 12, 12, 0.98);
+            box-shadow: 0 5px 20px rgba(0,0,0,0.3);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 2rem;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            background: linear-gradient(45deg, #00d4ff, #ff6b9d);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            color: #ffffff;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            right: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(45deg, #00d4ff, #ff6b9d);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .nav-links a:hover {
+            color: #00d4ff;
+        }
+
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            gap: 4px;
+        }
+
+        .hamburger span {
+            width: 25px;
+            height: 3px;
+            background: #ffffff;
+            transition: 0.3s;
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800"><defs><radialGradient id="a" cx="50%" cy="50%"><stop offset="0%" stop-color="%2300d4ff" stop-opacity="0.3"/><stop offset="100%" stop-color="%23ff6b9d" stop-opacity="0.1"/></radialGradient></defs><rect width="1200" height="800" fill="url(%23a)"/><circle cx="200" cy="200" r="100" fill="%2300d4ff" opacity="0.4"/><circle cx="1000" cy="600" r="150" fill="%23ff6b9d" opacity="0.3"/><circle cx="800" cy="150" r="80" fill="%23ffffff" opacity="0.2"/></svg>');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            position: relative;
+        }
+
+        .hero-content h1 {
+            font-size: clamp(3rem, 8vw, 6rem);
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(45deg, #ffffff, #00d4ff, #ff6b9d);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: glow 2s ease-in-out infinite alternate;
+        }
+
+        @keyframes glow {
+            from { filter: drop-shadow(0 0 20px #00d4ff); }
+            to { filter: drop-shadow(0 0 30px #ff6b9d); }
+        }
+
+        .hero-content p {
+               font-size: clamp(1.2rem, 3vw, 1.8rem);
+               margin-bottom: 2.5rem;
+               opacity: 0.9;
+               max-width: 600px;
+               margin-left: auto;
+               margin-right: auto;
+               text-align: center;
+        }
+
+        
+        .cta-button {
+            display: inline-block;
+            padding: 1.2rem 3rem;
+            background: linear-gradient(45deg, #00d4ff, #ff6b9d);
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 30px rgba(0, 212, 255, 0.4);
+        }
+
+        .cta-button:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0, 212, 255, 0.6);
+        }
+
+        
+
+        /* Sections */
+        .section {
+            padding: 100px 0;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding-right: 2rem;
+            padding-left: 2rem;
+        }
+
+        .section h2 {
+            text-align: center;
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin-bottom: 4rem;
+            background: linear-gradient(45deg, #00d4ff, #ff6b9d);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .card {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(20px);
+            border-radius: 20px;
+            padding: 2rem;
+            text-align: center;
+            transition: all 0.4s ease;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #00d4ff, #ff6b9d);
+            transform: scaleX(0);
+            transition: transform 0.4s ease;
+        }
+
+        .card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .card:hover {
+            transform: translateY(-15px) scale(1.02);
+            background: rgba(255, 255, 255, 0.1);
+            box-shadow: 0 25px 50px rgba(0, 212, 255, 0.3);
+        }
+
+        .card img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            border-radius: 15px;
+            margin-bottom: 1.5rem;
+            transition: transform 0.4s ease;
+        }
+
+        .card:hover img {
+            transform: scale(1.05);
+        }
+
+        .card h3 {
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+            color: #ffffff;
+        }
+
+        .card p {
+            opacity: 0.9;
+            font-size: 1.1rem;
+            line-height: 1.7;
+        }
+
+        /* Footer */
+        footer {
+            background: rgba(12, 12, 12, 0.95);
+            padding: 3rem 0 1.5rem;
+            text-align: center;
+            border-top: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .social-icons {
+            margin: 2rem 0;
+        }
+
+        .social-icons a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 50px;
+            height: 50px;
+            margin: 0 10px;
+            background: linear-gradient(45deg, #00d4ff, #ff6b9d);
+            color: white;
+            text-decoration: none;
+            border-radius: 50%;
+            transition: all 0.3s ease;
+        }
+
+        .social-icons a:hover {
+            transform: translateY(-5px) scale(1.1);
+            box-shadow: 0 10px 25px rgba(0, 212, 255, 0.4);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hamburger {
+                display: flex;
+            }
+
+            .nav-links {
+                position: fixed;
+                right: -100%;
+                top: 70px;
+                flex-direction: column;
+                background: rgba(12, 12, 12, 0.98);
+                width: 100%;
+                text-align: center;
+                transition: 0.3s;
+                padding: 2rem 0;
+            }
+
+            .nav-links.active {
+                right: 0;
+            }
+
+            .section {
+                padding: 80px 1rem;
+            }
+
+            .cards-grid {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+        }
+
+        /* Scroll animations */
+       .fade-in {
+  opacity: 0;
+  transform: translateY(50px);
+  transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+
+.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-container">
+            <div class="logo">TechModern </div>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="#home">الرئيسية</a></li>
+                <li><a href="#robots">الروبوتات</a></li>
+                <li><a href="#space">الفضاء</a></li>
+                <li><a href="#cities">المدن المستدامة</a></li>
+            </ul>
+            <div class="hamburger" id="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <h1>مستقبل التكنولوجيا</h1>
+            <p>استكشف الثورة التكنولوجية القادمة التي ستغير حياتنا إلى الأبد. من الروبوتات الذكية إلى المدن المستدامة والاستكشاف الفضائي.</p>
+            <a href="#robots" class="cta-button">ابدأ الاستكشاف</a>
+        </div>
+    </section>
+
+    <!-- Robotics Section -->
+    <section id="robots" class="section fade-in">
+        <h2>الروبوتات</h2>
+        <div class="cards-grid">
+            <div class="card fade-in">
+                <img src="https://vid.alarabiya.net/images/2022/02/11/aa1e3421-e408-4bf2-acf5-ca3fd84f7c35/aa1e3421-e408-4bf2-acf5-ca3fd84f7c35_16x9_1200x676.jpg" alt="روبوت ذكي">
+                <h3>الروبوتات الذكية في الحياة اليومية</h3>
+                <p>الروبوتات الذكية أصبحت جزء من حياتنا اليومية، فهي تنظف بيوتنا بالمكانس الذكية، تساعدنا في تنظيم وقتنا وتشغيل الأجهزة من خلال المساعدين الصوتيين، تتحكم في الأجهزة المنزلية مثل الغسالات والثلاجات الذكية، وتوفر لنا أمانًا ومساعدة للمسنين. هي تجعل حياتنا أسهل وأسرع وتقلل المجهود في الأعمال المتكررة، وتجعل البيت والعمل أكثر راحة وكفاءة.</p>
+            </div>
+            <div class="card fade-in">
+                <img src="https://cdn.baianat.com/articles/robotics3_1550488921667_8ub2zr.jpg" alt="روبوت صناعي">
+                <h3>تحول الصناعة والعمل</h3>
+                <p>ستحول الروبوتات الصناعات بأكملها من خلال الدقة الفائقة، العمل 24/7، والقدرة على التعلم المستمر، مما يزيد الإنتاجية بنسبة 100%. </p>
+                <p>أحد أبرز مظاهر هذا التحول هو انتشار العمل الرقمي والعمل عن بُعد، حيث أصبح بإمكان الأفراد أداء وظائفهم من أي مكان في العالم باستخدام الإنترنت</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Space Section -->
+    <section id="space" class="section fade-in">
+        <h2>الفضاء</h2>
+        <div class="cards-grid">
+            <div class="card fade-in">
+            
+    <img src="https://cdn.eremnews.com/media/5cfcd8b7-74ac-4e79-bcf4-31920caa6d59" alt="مستكشف فضاء">
+    <h3>استكشاف الفضاء</h3>
+    <p>ستتوسع رحلات الفضاء التجارية والعلمية لتشمل القمر والمريخ، مع وجود محطات فضائية ذكية لدعم البحث والسياحة الفضائية. 
+        ومع هذا التوسع، ستظهر بنية تحتية متكاملة في الفضاء تضم موانئ فضائية متطورة ومركبات قابلة لإعادة الاستخدام،
+         مما يساهم في تقليل تكاليف السفر الفضائي وزيادة عدد الرحلات بشكل ملحوظ.</p>
+</div>
+
+<div class="card fade-in">
+    <img src="https://static.srpcdigital.com/styles/1037xauto/public/2014/07/25/Tech-260714-3.jpg.webp" alt="أقمار صناعية">
+    <h3>الأقمار الصناعية</h3>
+    <p>ستصبح الأقمار الصناعية أكثر ذكاءً وكفاءة، ما يعزز الاتصالات، الرصد المناخي، والملاحة الفضائية بدقة عالية جداً.
+         وسيصاحب ذلك تطور كبير في قدرتها على معالجة البيانات بشكل فوري باستخدام تقنيات الذكاء الاصطناعي،
+          مما يتيح تحليل المعلومات وإرسال النتائج بسرعة دون الحاجة للرجوع المستمر إلى المحطات الأرضية.</p>
+</div>
+</div>
+</section>
+
+<!-- Sustainable Cities Section -->
+<section id="cities" class="section fade-in">
+    <h2>المدن المستدامة</h2>
+    <div class="cards-grid">
+        <div class="card fade-in">
+            <img src="https://iiot-world.com/wp-content/uploads/2018/12/shutterstock_726915340.jpg" alt="مدينة مستدامة">
+            <h3>البنية التحتية </h3>
+            <p>ستعتمد المدن المستدامة على الطاقة النظيفة، الحدائق العمودية، وأنظمة النقل الذكية لتقليل الانبعاثات وتحسين جودة الحياة.</p>
+        </div>
+        <div class="card fade-in">
+            <img src="https://www.elaosboa.com/wp-content/uploads/2024/12/elaosboa18624.jpg" alt="نقل ذكي">
+            <h3>النقل الذكي </h3>
+            <p>سيتم اعتماد المركبات الكهربائية ووسائل النقل الذكية المدمجة مع شبكات المدن لتحسين الكفاءة وتسهيل التنقل بشكل آمن وبيئي.</p>
+        </div>
+    </div>
+</section>
+
+<!-- Footer -->
+<footer>
+    <div class="footer-content">
+        <div class="social-icons">
+            <a href="https://www.facebook.com/share/1F8B6kH2L1/"><i class="fab fa-facebook-f"></i></a>
+            <a href="https://x.com/TechVerseEGY"><i class="fab fa-twitter"></i></a>
+            <a href="https://www.instagram.com/techversegypt?igsh=aTE0Mno1eHRsMWlz"><i class="fab fa-instagram"></i></a>
+        </div>
+        <p>© 2026 / TechModern </p>
+        
+    </div>
+</footer>
+
+<!-- Scripts -->
+<script>
+    // Hamburger menu toggle
+  const hamburger = document.getElementById('hamburger');
+  const navLinks = document.getElementById('navLinks');
+  hamburger.addEventListener('click', () => {
+    navLinks.classList.toggle('active');
+  });
+
+  // Scroll animations
+  document.addEventListener('DOMContentLoaded', () => {
+    const faders = document.querySelectorAll('.fade-in');
+
+    const appearOptions = {
+      threshold: 0.3,
+      rootMargin: "0px 0px -50px 0px"
+    };
+
+    const appearOnScroll = new IntersectionObserver((entries, observer) => {
+      entries.forEach(entry => {
+        if (!entry.isIntersecting) return;
+        entry.target.classList.add('visible');
+        observer.unobserve(entry.target);
+      });
+    }, appearOptions);
+
+    faders.forEach(fader => appearOnScroll.observe(fader));
+  });
+
+  // Navbar scroll effect
+  const nav = document.querySelector('nav');
+  window.addEventListener('scroll', () => {
+    if(window.scrollY > 50) {
+      nav.classList.add('scrolled');
+    } else {
+      nav.classList.remove('scrolled');
+    }
+  });
+</script>
+</body>
+</html>         

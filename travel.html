@@ -1,0 +1,795 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>التكنولوجيا في السياحة والطيران | مستقبل السفر</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* ===== RESET & BASE STYLES ===== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            scroll-padding-top: 100px;
+        }
+
+        body {
+            font-family: 'Cairo', sans-serif;
+            background: #0a0a0a;
+            color: #e0e0e0;
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        /* ===== ANIMATED BACKGROUND PARTICLES ===== */
+        #particles {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        /* ===== GLASSMORPHISM UTILITIES ===== */
+        .glass {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 25px 45px rgba(0, 0, 0, 0.3);
+        }
+
+        .glass-glow {
+            box-shadow: 
+                0 25px 45px rgba(0, 123, 255, 0.2),
+                0 0 50px rgba(0, 123, 255, 0.1);
+        }
+
+        /* ===== NEON GRADIENTS ===== */
+        .gradient-neon {
+            background: linear-gradient(135deg, #00d4ff 0%, #5a67d8 25%, #9f7aea 50%, #00d4ff 100%);
+            background-size: 400% 400%;
+            animation: gradientShift 8s ease infinite;
+        }
+
+        @keyframes gradientShift {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+
+        /* ===== NAVBAR ===== */
+        .navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 1rem 5%;
+            z-index: 1000;
+            backdrop-filter: blur(30px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 900;
+            background: linear-gradient(135deg, #00d4ff, #9f7aea);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2.5rem;
+        }
+
+        .nav-links a {
+            color: #e0e0e0;
+            text-decoration: none;
+            font-weight: 500;
+            position: relative;
+            transition: all 0.3s ease;
+            padding: 0.5rem 0;
+        }
+
+        .nav-links a::before {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(135deg, #00d4ff, #9f7aea);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::before,
+        .nav-links a.active::before {
+            width: 100%;
+        }
+
+        .nav-links a:hover {
+            color: #00d4ff;
+            text-shadow: 0 0 20px rgba(0, 212, 255, 0.5);
+        }
+
+        /* ===== HERO SECTION ===== */
+        .hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-content {
+            max-width: 900px;
+            padding: 0 2rem;
+            z-index: 2;
+        }
+
+        .hero-title {
+            font-size: clamp(3rem, 8vw, 6rem);
+            font-weight: 900;
+            background: linear-gradient(135deg, #00d4ff 0%, #ffffff 50%, #9f7aea 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 2rem;
+            opacity: 0;
+            transform: translateY(50px);
+            animation: fadeInUp 1.2s ease forwards;
+        }
+
+        .hero-subtitle {
+            font-size: 1.5rem;
+            margin-bottom: 3rem;
+            opacity: 0.8;
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeInUp 1.2s ease 0.3s forwards;
+        }
+
+        .hero-cta {
+            display: inline-flex;
+            align-items: center;
+            gap: 1rem;
+            background: linear-gradient(135deg, #00d4ff, #9f7aea);
+            color: white;
+            padding: 1.2rem 3rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.2rem;
+            transition: all 0.4s ease;
+            box-shadow: 0 20px 40px rgba(0, 212, 255, 0.3);
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeInUp 1.2s ease 0.6s forwards;
+        }
+
+        .hero-cta:hover {
+            transform: translateY(-8px) scale(1.05);
+            box-shadow: 0 30px 60px rgba(0, 212, 255, 0.4);
+        }
+
+        /* ===== SECTION COMMON STYLES ===== */
+        section {
+            padding: 120px 5%;
+            max-width: 1400px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .section-title {
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-weight: 800;
+            text-align: center;
+            margin-bottom: 4rem;
+            background: linear-gradient(135deg, #00d4ff, #9f7aea);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        /* ===== FLIGHT BOOKING SECTION ===== */
+        .flight-booking {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 5rem;
+            align-items: center;
+        }
+
+        .flight-image {
+            position: relative;
+            border-radius: 30px;
+            overflow: hidden;
+            height: 500px;
+        }
+
+        .flight-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.6s ease;
+        }
+
+        .flight-image:hover img {
+            transform: scale(1.1);
+        }
+
+        .flight-image::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(0, 212, 255, 0.2), rgba(159, 122, 234, 0.2));
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .flight-image:hover::before {
+            opacity: 1;
+        }
+
+        .flight-content h3 {
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(135deg, #00d4ff, #9f7aea);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+
+        .stat-item {
+            text-align: center;
+            padding: 2rem;
+        }
+
+        .stat-number {
+            font-size: 3rem;
+            font-weight: 900;
+            background: linear-gradient(135deg, #00d4ff, #9f7aea);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            display: block;
+        }
+
+        /* ===== GDS NETWORK SECTION ===== */
+        .gds-network {
+            text-align: center;
+        }
+
+        .network-visual {
+            height: 400px;
+            position: relative;
+            margin: 3rem 0;
+            border-radius: 30px;
+            overflow: hidden;
+            background: radial-gradient(circle at center, rgba(0, 212, 255, 0.1) 0%, transparent 70%);
+        }
+
+        .gds-logos {
+            display: flex;
+            justify-content: center;
+            gap: 3rem;
+            margin: 3rem 0;
+            flex-wrap: wrap;
+        }
+
+        .gds-logo {
+            font-size: 3rem;
+            padding: 2rem;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 20px;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .gds-logo:hover {
+            transform: translateY(-10px) scale(1.1);
+            box-shadow: 0 20px 40px rgba(0, 212, 255, 0.3);
+        }
+
+        /* ===== SMART AIRPORTS SECTION ===== */
+        .smart-airports {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 2rem;
+        margin-top: 3rem;
+        }
+
+        .smart-card {
+        background: rgba(255, 255, 255, 0.05);
+        backdrop-filter: blur(20px);
+        border-radius: 20px;
+        padding: 2rem;
+        text-align: center;
+        transition: all 0.4s ease;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        position: relative;
+        }
+
+        .smart-card img {
+        width: 100%;
+        height: 200px;
+        object-fit: cover;
+        border-radius: 15px;
+        margin-bottom: 1.5rem;
+        }
+
+        .smart-icon {
+        font-size: 5rem;
+        color: #00d4ff;
+        margin-bottom: 1rem;
+        }
+
+        .smart-card h3 {
+        font-size: 1.8rem;
+        margin-bottom: 1rem;
+        color: #ffffff;
+        }
+
+        .smart-card p {
+        font-size: 1.1rem;
+        line-height: 1.7;
+        opacity: 0.9;
+        }
+
+        /* Hover effect */
+        .smart-card:hover {
+        transform: translateY(-10px) scale(1.02);
+        background: rgba(255, 255, 255, 0.1);
+        box-shadow: 0 25px 50px rgba(0, 212, 255, 0.3);
+        }
+
+        .smart-card:hover {
+            transform: translateY(-15px);
+            box-shadow: 0 40px 80px rgba(0, 212, 255, 0.3);
+        }
+
+        .smart-icon {
+            font-size: 4rem;
+            background: linear-gradient(135deg, #00d4ff, #9f7aea);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 1.5rem;
+        }
+
+        /* ===== WHY MATTERS SECTION ===== */
+        .why-matters {
+            background: radial-gradient(ellipse at center, rgba(0, 212, 255, 0.1) 0%, transparent 70%);
+            border-radius: 40px;
+            padding: 5rem 3rem;
+            text-align: center;
+        }
+
+        /* ===== FUTURE SECTION ===== */
+        .future-section {
+            background: linear-gradient(135deg, #0a0a0a 0%, #1a0d2e 100%);
+            clip-path: polygon(0 10%, 100% 0, 100% 90%, 0 100%);
+            padding: 8rem 5%;
+            text-align: center;
+        }
+
+        /* ===== FOOTER ===== */
+        .footer {
+            background: #000;
+            padding: 4rem 5% 2rem;
+            text-align: center;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .social-link {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.05);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #e0e0e0;
+            text-decoration: none;
+            transition: all 0.4s ease;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .social-link:hover {
+            background: linear-gradient(135deg, #00d4ff, #9f7aea);
+            transform: translateY(-10px) rotate(360deg);
+            box-shadow: 0 20px 40px rgba(0, 212, 255, 0.4);
+        }
+
+        /* ===== ANIMATIONS ===== */
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+
+        .float {
+            animation: float 6s ease-in-out infinite;
+        }
+
+        /* ===== SCROLL ANIMATIONS ===== */
+        .reveal {
+            opacity: 0;
+            transform: translateY(100px);
+            transition: all 1s ease;
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .reveal-left {
+            opacity: 0;
+            transform: translateX(60px);
+            transition: all 1s ease;
+        }
+
+        .reveal-left.active {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 768px) {
+            .nav-links {
+                position: fixed;
+                top: 80px;
+                right: -100%;
+                width: 100%;
+                height: calc(100vh - 80px);
+                background: rgba(10, 10, 10, 0.98);
+                backdrop-filter: blur(30px);
+                flex-direction: column;
+                justify-content: center;
+                transition: right 0.3s ease;
+            }
+
+            .nav-links.active {
+                right: 0;
+            }
+
+            .flight-booking {
+                grid-template-columns: 1fr;
+                gap: 3rem;
+            }
+
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .gds-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+}
+
+.gds-card {
+    background: rgba(255,255,255,0.05);
+    border-radius: 20px;
+    overflow: hidden;
+    transition: all 0.4s ease;
+    backdrop-filter: blur(15px);
+    border: 1px solid rgba(255,255,255,0.1);
+}
+
+.gds-card img {
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+}
+
+.gds-card h3 {
+    padding: 1rem;
+    font-size: 1.5rem;
+    color: #00d4ff;
+}
+
+.gds-card p {
+    padding: 0 1rem 1.5rem;
+}
+
+.gds-card:hover {
+    transform: translateY(-10px) scale(1.03);
+    box-shadow: 0 20px 40px rgba(0,212,255,0.3);
+}
+    </style>
+</head>
+<body>
+    <!-- Animated Particles Background -->
+    <canvas id="particles"></canvas>
+
+    <!-- Navigation -->
+    <nav class="navbar glass">
+        <div class="nav-container">
+            <div class="logo">TechTravel</div>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="#home" class="nav-link active">الرئيسية</a></li>
+                <li><a href="#flight" class="nav-link">حجوزات الرحلات</a></li>
+                <li><a href="#gds" class="nav-link">GDS</a></li>
+                <li><a href="#smart" class="nav-link">المطارات الذكية</a></li>
+                <li><a href="#future" class="nav-link">المستقبل</a></li>
+            </ul>
+            <i class="fas fa-bars nav-toggle" id="navToggle" style="font-size: 1.5rem; cursor: pointer; display: none;"></i>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <h1 class="hero-title">التكنولوجيا في السياحة والطيران</h1>
+            <p class="hero-subtitle">اكتشف مستقبل السفر مع أحدث التقنيات المتطورة والذكاء الاصطناعي</p>
+            <a href="#flight" class="hero-cta">
+                <span>ابدأ الاستكشاف</span>
+                <i class="fas fa-rocket"></i>
+            </a>
+        </div>
+    </section>
+
+    <!-- Flight Booking Section -->
+    <section id="flight" class="reveal">
+        <h2 class="section-title">أنظمة حجز الرحلات الجوية</h2>
+        <div class="flight-booking">
+            <div class="flight-image reveal-left">
+                <img src="https://altaj.news/wp-content/uploads/2024/10/e99cda6b-3e85-4a28-851f-4b5199d92db8.webp?" alt="نظام حجز طيران">
+            </div>
+            <div class="flight-content reveal">
+                <h3>الجيل الجديد من الحجوزات</h3>
+                <p>أنظمة الحجز المتطوره
+                <p>
+                أنظمة الحجز المتطورة أصبحت تعتمد على الذكاء الاصطناعي لتحليل بيانات المسافرين وتقديم أفضل الأسعار والرحلات المناسبة. 
+                هذه الأنظمة تتيح الحجز الفوري، إدارة التذاكر، والتحديثات اللحظية لحالة الرحلات مما يجعل تجربة السفر أسرع وأسهل.
+                </p>
+
+                <div class="stats-grid">
+                    <div class="stat-item glass">
+                        <span class="stat-number">24/7</span>
+                        <p>حجز متاح</p>
+                    </div>
+                    <div class="stat-item glass">
+                        <span class="stat-number">+1000</span>
+                        <p>شركة طيران</p>
+                    </div>
+                    <div class="stat-item glass">
+                        <span class="stat-number">ثواني</span>
+                        <p>لتأكيد الحجز</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- GDS Section -->
+    <section id="gds" class="gds-network reveal">
+        <h2 class="section-title">أنظمة التوزيع العالمية (GDS)</h2>
+        <p>
+        تعتبر أنظمة GDS مثل Amadeus وSabre وGalileo العمود الفقري لصناعة السياحة، حيث تربط بين شركات الطيران والفنادق 
+        وشركات تأجير السيارات في شبكة واحدة متكاملة تتيح لوكلاء السفر الوصول إلى كل الخدمات بسهولة.
+        </p>
+<div class="gds-cards">
+
+    <div class="gds-card">
+        <img src="https://images.unsplash.com/photo-1436491865332-7a61a109cc05" alt="">
+        <h3>حجز الطيران</h3>
+        <p>إمكانية البحث عن الرحلات ومقارنتها وحجزها بسهولة.</p>
+    </div>
+
+    <div class="gds-card">
+        <img src="https://images.unsplash.com/photo-1566073771259-6a8506099945" alt="">
+        <h3>حجز الفنادق</h3>
+        <p>الوصول إلى آلاف الفنادق حول العالم مع أفضل الأسعار.</p>
+    </div>
+
+    <div class="gds-card">
+        <img src="https://images.unsplash.com/photo-1503376780353-7e6692767b70" alt="">
+        <h3>تأجير السيارات</h3>
+        <p>حجز سيارات بسهولة من شركات عالمية.</p>
+    </div>
+
+    <div class="gds-card">
+        <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e" alt="">
+        <h3>خدمات سياحية</h3>
+        <p>تنظيم برامج سياحية متكاملة ورحلات مميزة.</p>
+    </div>
+
+</div>
+    </section>
+
+   <!-- Smart Airports Section -->
+<section id="smart" class="section fade-in">
+  <h2 class="section-title">المطارات الذكية</h2>
+
+  <div class="smart-airports">
+    <!-- كارد 1: صورة -->
+    <div class="smart-card fade-in">
+      <img src="https://vid.alarabiya.net/images/2016/08/30/bd101a71-faf3-4d7f-bd8f-96d696adc05e/bd101a71-faf3-4d7f-bd8f-96d696adc05e_16x9_1200x676.png" alt="التعرف على الوجه">
+      <h3>التعرف على الوجه</h3>
+      <p>تقنيات البيومتريا تتيح دخول سريع بدون جواز سفر أو تذاكر ورقية.</p>
+    </div>
+
+    <!-- كارد 2: أيقونة كبيرة -->
+    <div class="smart-card fade-in">
+      <img src="https://egypt14.com/wp-content/uploads/2018/08/lg-designed-the-airport-guide-robot-to-make-air-travel-easier-02.jpg?w=700&h=394" alt="">
+      <h3>الروبوتات</h3>
+      <p>روبوتات ذكية لمساعدة المسافرين وتقديم المعلومات داخل المطار.</p>
+    </div>
+
+    <!-- كارد 3: أيقونة كبيرة -->
+    <div class="smart-card fade-in">
+      <img src="https://cdn1-m.alittihad.ae/store/archive/image/2025/5/31/662b6ead-a6c7-4a97-9d8c-1011ae1f12ae.jpg?width=1300" alt="">
+      <h3>الذكاء الاصطناعي</h3>
+      <p>تحليل البيانات لتحسين تجربة السفر وتقليل الازدحام.</p>
+    </div>
+  </div>
+</section>
+
+    <!-- Future Section -->
+    <section id="future" class="future-section">
+        <h2 class="section-title">مستقبل السفر</h2>
+        <p>
+       يشهد الطيران في المستقبل تحوّلات كبيرة نتيجة التطورات التكنولوجية الحديثة والتركيز على الاستدامة وكفاءة الموارد.
+        من أبرز هذه التحولات، اعتماد الطائرات على تصميمات أخف وزناً وأكثر كفاءة في استهلاك الوقود، بما يقلل من الانبعاثات الضارة بالبيئة.
+        </p>
+        <p>ستعتمد الطائرات المستقبلية على أنظمة ذكية تعتمد على الذكاء الاصطناعي في الملاحة والتحكم،
+             مما يساهم في تقليل الأخطاء وتحسين دقة مواعيد الإقلاع والوصول، وبالتالي تعزيز السلامة والكفاءة التشغيلية.</p>
+            
+             <p>أما تجربة المسافر، فستصبح متكاملة رقمياً، حيث يمكن متابعة حجز التذاكر، اختيار المقاعد، إدارة الأمتعة،
+                 والاستفادة من خدمات الضيافة عبر منصات رقمية موحدة، غالباً متصلة بأنظمة التوزيع العالمية (GDS)، مما يجعل عملية السفر أكثر سلاسة.</p>
+                
+                 <p>كما يُتوقع ظهور الطائرات الكهربائية والهجينة للرحلات القصيرة والمتوسطة، وهو ما يساهم في تقليل الاعتماد على الوقود الأحفوري وخفض التلوث.
+                     أما الطائرات المخصصة للرحلات الطويلة، فستواصل التطور من حيث الكفاءة واستهلاك الوقود، مع احتمال ظهور تصميمات مبتكرة مثل الطائرات الأسرع من الصوت أو ذات الهيكل الجديد.</p>
+                     
+                     <p>الهدف من هذه التطورات هو توفير تجربة سفر أسرع وأكثر أماناً وراحة، مع الحفاظ على الاستدامة البيئية،
+                         ودمج جميع خدمات السفر في نظام رقمي متكامل يربط بين شركات الطيران والفنادق ووسائل النقل الأخرى.</p>
+                         
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="social-links">
+            <a href="https://www.facebook.com/share/1F8B6kH2L1/" class="social-link"><i class="fab fa-facebook-f"></i></a>
+            <a href="https://x.com/TechVerseEGY" class="social-link"><i class="fab fa-twitter"></i></a>
+            <a href="https://www.instagram.com/techversegypt?igsh=aTE0Mno1eHRsMWlz" class="social-link"><i class="fab fa-instagram"></i></a>
+
+        </div>
+        <p>© 2026 | TechTravel</p>
+    </footer>
+
+    <!-- JavaScript -->
+    <script>
+        // Mobile Menu
+        const navToggle = document.getElementById("navToggle");
+        const navLinks = document.getElementById("navLinks");
+
+        navToggle.style.display = "block";
+
+        navToggle.addEventListener("click", () => {
+            navLinks.classList.toggle("active");
+        });
+
+        // Scroll Reveal
+        function reveal() {
+            let reveals = document.querySelectorAll(".reveal, .reveal-left");
+
+            reveals.forEach(el => {
+                let windowHeight = window.innerHeight;
+                let elementTop = el.getBoundingClientRect().top;
+
+                if (elementTop < windowHeight - 100) {
+                    el.classList.add("active");
+                }
+            });
+        }
+
+        window.addEventListener("scroll", reveal);
+
+        // Active Nav Link
+        const sections = document.querySelectorAll("section");
+        const navItems = document.querySelectorAll(".nav-link");
+
+        window.addEventListener("scroll", () => {
+            let current = "";
+
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop - 100;
+                if (scrollY >= sectionTop) {
+                    current = section.getAttribute("id");
+                }
+            });
+
+            navItems.forEach(link => {
+                link.classList.remove("active");
+                if (link.getAttribute("href").includes(current)) {
+                    link.classList.add("active");
+                }
+            });
+        });
+
+        // Particles Background
+        const canvas = document.getElementById("particles");
+        const ctx = canvas.getContext("2d");
+
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+
+        let particlesArray = [];
+
+        for (let i = 0; i < 80; i++) {
+            particlesArray.push({
+                x: Math.random() * canvas.width,
+                y: Math.random() * canvas.height,
+                size: Math.random() * 2,
+                speedX: Math.random() * 0.5,
+                speedY: Math.random() * 0.5
+            });
+        }
+
+        function animateParticles() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+            particlesArray.forEach(p => {
+                p.x += p.speedX;
+                p.y += p.speedY;
+
+                if (p.x > canvas.width) p.x = 0;
+                if (p.y > canvas.height) p.y = 0;
+
+                ctx.fillStyle = "rgba(0,212,255,0.5)";
+                ctx.beginPath();
+                ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+                ctx.fill();
+            });
+
+            requestAnimationFrame(animateParticles);
+        }
+
+        animateParticles();
+    </script>
+
+</body>
+</html>

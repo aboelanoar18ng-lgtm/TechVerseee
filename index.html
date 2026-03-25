@@ -9,7 +9,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;700;900&display=swap" rel="stylesheet">
-
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <style>
         /* --- المتغيرات والألوان --- */
         :root {
@@ -444,6 +444,21 @@
             }
         }
         
+        .social-links {
+    margin-bottom: 15px;
+}
+
+.social-link {
+    margin: 0 10px;
+    font-size: 20px;
+    color: #00f3ff;
+    transition: 0.3s;
+}
+
+.social-link:hover {
+    color: #fff;
+    text-shadow: 0 0 10px #00f3ff;
+}
     </style>
 </head>
 <body>
@@ -566,6 +581,7 @@
                 </div>
            </a>
                 <!-- Room 6 -->
+            <a href="travel.html">
                 <div class="room-card fade-in">
                     <img src="https://vid.alarabiya.net/images/2023/06/11/ac769da3-da47-436e-9f2e-b8bb47bc0df2/ac769da3-da47-436e-9f2e-b8bb47bc0df2_16x9_600x338.jpg" class="room-img">
                     <div class="room-content">
@@ -578,8 +594,9 @@
                         <span class="interactive-badge"> اضغط للدخول</span>
                     </div>
                 </div>
-
+           </a>
                 <!-- Room 7 -->
+                 <a href="TechModern.html">
                 <div class="room-card fade-in">
                     <img src="https://cdn1-m.alittihad.ae/store/archive/image/2025/2/15/46f6c7e8-d719-43b1-8625-292dcbfc2eed.png?width=1300" class="room-img">
                     <div class="room-content">
@@ -592,7 +609,7 @@
                         <span class="interactive-badge">اضغط للدخول </span>
                     </div>
                 </div>
-
+           </a> 
             </div>
         </div>
     </section>
@@ -658,7 +675,20 @@
 
     <!-- الفوتر -->
     <footer>
-        <p>© 2026 متحف التطور التكنولوجي - مشروع تخرج</p>
+            <div class="social-links">
+        <a href="https://www.facebook.com/share/1F8B6kH2L1/" target="_blank" class="social-link">
+            <i class="fab fa-facebook-f"></i>
+        </a>
+
+        <a href="https://www.instagram.com/techversegypt?igsh=aTE0Mno1eHRsMWlz" target="_blank" class="social-link">
+            <i class="fab fa-instagram"></i>
+        </a>
+
+         <a href="https://x.com/TechVerseEGY" target="_blank" class="social-link">
+            <i class="fab fa-twitter"></i>
+        </a>
+    </div>
+        <p>© 2026 - TechVerse Museum     </p>
     </footer>
 
     <script>
@@ -683,9 +713,5 @@
             navLinks.classList.toggle("active");
         });
     </script>
-
-   
-
 </body>
 </html>               
-
