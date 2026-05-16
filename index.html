@@ -9,16 +9,16 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;700;900&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <style>
         /* --- المتغيرات والألوان --- */
         :root {
             --bg-color: #050505;
             --card-bg: #111111;
             --text-color: #e0e0e0;
-            --accent-color: #00f3ff; /* أزرق نيون */
+            --accent-color: #00f3ff;
             --accent-glow: rgba(20, 179, 187, 0.5);
-            --secondary-accent: #0066ff4f; /* بنفسجي نيون */
+            --secondary-accent: #0066ff4f;
             --font-main: 'Cairo', sans-serif;
             --transition: all 0.3s ease;
         }
@@ -30,13 +30,12 @@
             scroll-behavior: smooth;
         }
 
-        
+        html {
+            scroll-padding-top: 90px;
+        } 
 
         body {
             font-family: var(--font-main);
-         html {
-           scroll-padding-top: 90px;
-        } 
             background-color: var(--bg-color);
             color: var(--text-color);
             overflow-x: hidden;
@@ -54,13 +53,13 @@
         }
 
         .section-title {
-    width: 100%;
-    text-align: center;
-    font-size: 2.5rem;
-    margin-bottom: 3rem;
-    color: var(--accent-color);
-    text-shadow: 0 0 10px var(--accent-glow);
-}
+            width: 100%;
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            color: var(--accent-color);
+            text-shadow: 0 0 10px var(--accent-glow);
+        }
 
         .section-title::after {
             content: '';
@@ -146,7 +145,127 @@
             font-size: 1.5rem;
         }
 
-        /* --- قسم الهيرو (الرئيسية) --- */
+        /* --- AI Chat Widget --- */
+        .ai-chat-widget {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(45deg, var(--accent-color), #00aaff);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: 0 10px 30px rgba(0, 243, 255, 0.3);
+            transition: var(--transition);
+            z-index: 1001;
+            animation: pulse 2s infinite;
+        }
+
+        .ai-chat-widget:hover {
+            transform: scale(1.1);
+            box-shadow: 0 15px 40px rgba(0, 243, 255, 0.5);
+        }
+
+        @keyframes pulse {
+            0% { box-shadow: 0 10px 30px rgba(0, 243, 255, 0.3); }
+            50% { box-shadow: 0 10px 30px rgba(0, 243, 255, 0.6); }
+            100% { box-shadow: 0 10px 30px rgba(0, 243, 255, 0.3); }
+        }
+
+        .ai-chat-container {
+            position: fixed;
+            bottom: 100px;
+            right: 30px;
+            width: 350px;
+            height: 500px;
+            background: var(--card-bg);
+            border-radius: 15px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+            display: none;
+            flex-direction: column;
+            border: 2px solid var(--accent-color);
+            z-index: 1002;
+            overflow: hidden;
+        }
+
+        .ai-chat-container.active {
+            display: flex;
+        }
+
+        .ai-chat-header {
+            background: linear-gradient(135deg, var(--accent-color), #00aaff);
+            padding: 20px;
+            text-align: center;
+            color: #000;
+            font-weight: bold;
+        }
+
+        .ai-chat-messages {
+            flex: 1;
+            padding: 20px;
+            overflow-y: auto;
+            background: #0a0a0a;
+        }
+
+        .message {
+            margin-bottom: 15px;
+            padding: 12px 16px;
+            border-radius: 18px;
+            max-width: 85%;
+            word-wrap: break-word;
+        }
+
+        .user-message {
+            background: var(--accent-color);
+            color: #000;
+            margin-left: auto;
+            text-align: right;
+        }
+
+        .ai-message {
+            background: rgba(0, 243, 255, 0.1);
+            color: var(--text-color);
+            border: 1px solid rgba(0, 243, 255, 0.2);
+            margin-right: auto;
+        }
+
+        .ai-chat-input {
+            padding: 20px;
+            background: var(--card-bg);
+            border-top: 1px solid #333;
+        }
+
+        .ai-chat-input input {
+            width: 100%;
+            padding: 12px;
+            background: #0a0a0a;
+            border: 1px solid #333;
+            color: #fff;
+            border-radius: 25px;
+            font-family: var(--font-main);
+            outline: none;
+        }
+
+        .ai-chat-input input:focus {
+            border-color: var(--accent-color);
+            box-shadow: 0 0 10px rgba(0, 243, 255, 0.2);
+        }
+
+        .typing-indicator {
+            display: none;
+            padding: 12px 16px;
+            color: var(--accent-color);
+            font-style: italic;
+        }
+
+        .typing-indicator.active {
+            display: block;
+        }
+
+        /* --- قسم الهيرو --- */
         #home {
             height: 100vh;
             display: flex;
@@ -158,9 +277,7 @@
             overflow: hidden;
         }
 
-        /* خلفية متحركة */
         .hero-bg {
-            
             position: absolute;
             top: 0; left: 0; width: 100%; height: 100%;
             background-image: 
@@ -184,12 +301,12 @@
         }
 
         .hero-content h1 {
-            
             font-size: 3.5rem;
             margin-bottom: 20px;
-            background: (90deg, #fff, var(--accent-color));
-           
-            -webkit-text-fill-color: initialent;
+            background: linear-gradient(90deg, #fff, var(--accent-color));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
 
         .hero-content p {
@@ -199,7 +316,7 @@
             color: #aaa;
         }
 
-        /* --- أقسام المتحف --- */
+        /* باقي الـ CSS كما هو... */
         #rooms {
             padding: 100px 0;
             background: #080808;
@@ -279,139 +396,7 @@
             border: 1px solid var(--accent-color);
         }
 
-        /* --- المميزات الإضافية --- */
-        #features {
-            padding: 80px 0;
-            background: #050505;
-
-            
-        }
-
-        .features-wrapper {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 20px;
-        }
-
-        .feature-item {
-            background: linear-gradient(145deg, #111, #0a0a0a);
-            padding: 30px;
-            border-radius: 10px;
-            width: 250px;
-            text-align: center;
-            border: 1px solid #222;
-            transition: var(--transition);
-        }
-
-        .feature-item:hover {
-            border-color: var(--secondary-accent);
-            box-shadow: 0 0 15px rgba(56, 104, 207, 0.733);
-        }
-
-        .feature-icon {
-            font-size: 2rem;
-            margin-bottom: 15px;
-            color: var(--secondary-accent);
-        }
-
-        /* --- الجمهور المتوقع والأثر --- */
-        #info-sections {
-            padding: 80px 0;
-            background: #080808;
-        }
-
-        .info-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 50px;
-        }
-
-        .info-box {
-            background: #111;
-            padding: 40px;
-            border-radius: 15px;
-            border-right: 4px solid var(--accent-color);
-        }
-
-        .info-box h3 {
-            font-size: 1.8rem;
-            margin-bottom: 20px;
-            color: #fff;
-        }
-
-        .info-box p {
-            color: #bbb;
-            margin-bottom: 15px;
-        }
-
-        /* --- اتصل بنا --- */
-        #contact {
-            padding: 80px 0;
-            background: linear-gradient(to top, #000, #050505);
-        }
-
-        .contact-form {
-            max-width: 600px;
-            margin: 0 auto;
-            background: #111;
-            padding: 40px;
-            border-radius: 15px;
-            border: 1px solid #333;
-        }
-
-        .form-group {
-            margin-bottom: 20px;
-        }
-
-        .form-group label {
-            display: block;
-            margin-bottom: 8px;
-            color: var(--accent-color);
-        }
-
-        .form-group input, .form-group textarea {
-            width: 100%;
-            padding: 12px;
-            background: #0a0a0a;
-            border: 1px solid #333;
-            color: #fff;
-            border-radius: 5px;
-            font-family: var(--font-main);
-        }
-
-        .form-group input:focus, .form-group textarea:focus {
-            outline: none;
-            border-color: var(--accent-color);
-            box-shadow: 0 0 10px rgba(0, 243, 255, 0.2);
-        }
-
-        /* --- الفوتر --- */
-        footer {
-            background: #000;
-            padding: 40px 0;
-            text-align: center;
-            border-top: 1px solid #222;
-        }
-
-        footer p {
-            color: #666;
-            font-size: 0.9rem;
-        }
-
-        /* --- تأثيرات الحركة --- */
-        .fade-in {
-            opacity: 0;
-            transform: translateY(30px);
-            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
-        }
-
-        .fade-in.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        /* --- التجاوب مع الجوال --- */
+        /* باقي الـ CSS كما هو مع إضافة التجاوب */
         @media (max-width: 768px) {
             .nav-links {
                 position: absolute;
@@ -439,32 +424,120 @@
                 font-size: 2.2rem;
             }
 
-            .info-grid {
-                grid-template-columns: 1fr;
+            .ai-chat-container {
+                width: 90vw;
+                right: 5vw;
+                height: 70vh;
             }
         }
-        
+
         .social-links {
-    margin-bottom: 15px;
-}
+            margin-bottom: 15px;
+        }
 
-.social-link {
-    margin: 0 10px;
-    font-size: 20px;
-    color: #00f3ff;
-    transition: 0.3s;
-}
+        .social-link {
+            margin: 0 10px;
+            font-size: 20px;
+            color: #00f3ff;
+            transition: 0.3s;
+        }
 
-.social-link:hover {
-    color: #fff;
-    text-shadow: 0 0 10px #00f3ff;
-}
+        .social-link:hover {
+            color: #fff;
+            text-shadow: 0 0 10px #00f3ff;
+        }
+       
+    /* كل الكود القديم بتاعك */
+
+    #features {
+        padding: 100px 0;
+        background: #050505;
+    }
+
+    .features-wrapper {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 25px;
+    }
+
+    .feature-item {
+        background: linear-gradient(145deg, #111, #0a0a0a);
+        padding: 30px;
+        border-radius: 15px;
+        width: 260px;
+        text-align: center;
+        border: 1px solid #222;
+        transition: all 0.3s ease;
+    }
+
+    .feature-item:hover {
+        transform: translateY(-10px) scale(1.03);
+        border-color: var(--accent-color);
+        box-shadow: 0 0 25px rgba(0, 243, 255, 0.4);
+    }
+
+    .feature-icon {
+        font-size: 40px;
+        margin-bottom: 15px;
+        color: var(--accent-color);
+    }
+
+    .feature-item h3 {
+        color: var(--accent-color);
+        margin-bottom: 10px;
+    }
+
+    .feature-item p {
+        color: #aaa;
+        font-size: 0.95rem;
+    }
+      /* ====== FOOTER FIX ====== */
+    footer {
+        background: #000;
+        padding: 40px 0;
+        text-align: center;
+        border-top: 1px solid #222;
+    }
+
+    footer .container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .social-links {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 20px;
+        margin-bottom: 15px;
+    }
+
+    .social-link {
+        width: 45px;
+        height: 45px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 50%;
+        background: rgba(0, 243, 255, 0.1);
+        color: var(--accent-color);
+        font-size: 18px;
+        transition: 0.3s;
+    }
+
+    .social-link:hover {
+        transform: translateY(-5px) scale(1.1);
+        background: var(--accent-color);
+        color: #000;
+        box-shadow: 0 0 15px rgba(0, 243, 255, 0.5);
+    }
+
     </style>
 </head>
 <body>
-
-    
-
     <!-- القائمة العلوية -->
     <header>
         <div class="container">
@@ -490,211 +563,329 @@
         </div>
     </section>
 
-    
-</div>
-
     <!-- غرف المتحف -->
     <section id="rooms">
         <div class="container">
             <h2 class="section-title">غرف المتحف</h2>
-
             <div class="rooms-grid">
-                
-            
-                 <!-- Room 1 -->
-                 <a href="rooms.html">
-                <div class="room-card fade-in">
-                    <img src="https://menoflostglory.wordpress.com/wp-content/uploads/2015/02/1330.jpg" alt="الحضارات القديمة" class="room-img">
-                    <div class="room-content">
-                        <h3>الحضارات القديمة والهندسة المبكرة</h3>
-                        
-                        <ul>
-                            <li>هندسة الأهرامات المصرية</li>
-                            <li>نظام قياس النيل</li>
-                            <li>الأنظمة الطبية والكتابة</li>
-                        </ul>
-                        <span class="interactive-badge">اضغط للدخول</span>
-                        
+                <!-- Room 1 -->
+                <a href="rooms.html">
+                    <div class="room-card fade-in">
+                        <img src="https://menoflostglory.wordpress.com/wp-content/uploads/2015/02/1330.jpg" alt="الحضارات القديمة" class="room-img">
+                        <div class="room-content">
+                            <h3>الحضارات القديمة والهندسة المبكرة</h3>
+                            <ul>
+                                <li>هندسة الأهرامات المصرية</li>
+                                <li>نظام قياس النيل</li>
+                                <li>الأنظمة الطبية والكتابة</li>
+                            </ul>
+                            <span class="interactive-badge">اضغط للدخول</span>
+                        </div>
                     </div>
-                </div>
-               </a>
+                </a>
 
                 <!-- Room 2 -->
-                
                 <a href="Industrial.html">
-                 <div class="room-card fade-in">
-                    <img src="https://i0.wp.com/albukhari.com/wp-content/uploads/2025/11/shopfloor.jpg?w=1280&ssl=1" class="room-img">
-                    <div class="room-content">
-                        <h3>الثورة الصناعية</h3>
-                        <ul>
-                            <li>المحرك البخاري</li>
-                            <li>التصنيع الميكانيكي</li>
-                            <li>السكك الحديدية</li>
-                        </ul>
-                        <span class="interactive-badge">اضغط للدخول </span>
+                    <div class="room-card fade-in">
+                        <img src="https://i0.wp.com/albukhari.com/wp-content/uploads/2025/11/shopfloor.jpg?w=1280&ssl=1" class="room-img">
+                        <div class="room-content">
+                            <h3>الثورة الصناعية</h3>
+                            <ul>
+                                <li>المحرك البخاري</li>
+                                <li>التصنيع الميكانيكي</li>
+                                <li>السكك الحديدية</li>
+                            </ul>
+                            <span class="interactive-badge">اضغط للدخول</span>
+                        </div>
                     </div>
-                </div>
                 </a>
-                <!-- Room 3 -->
-                  <a href="communication.html">
-                <div class="room-card fade-in">
-                    <img src="https://3qool.net/uploads/images/202601/image_1200x_6971babedf727.jpg" class="room-img">
-                    <div class="room-content">
-                        <h3>ثورة الاتصالات</h3>
-                        <ul>
-                            <li>التلغراف</li>
-                            <li>الهاتف</li>
-                            <li>الأقمار الصناعية</li>
-                        </ul>
-                        <span class="interactive-badge">اضغط للدخول </span>
+
+                <!-- باقي الغرف كما هي... -->
+                <a href="communication.html">
+                    <div class="room-card fade-in">
+                        <img src="https://3qool.net/uploads/images/202601/image_1200x_6971babedf727.jpg" class="room-img">
+                        <div class="room-content">
+                            <h3>ثورة الاتصالات</h3>
+                            <ul>
+                                <li>التلغراف</li>
+                                <li>الهاتف</li>
+                                <li>الأقمار الصناعية</li>
+                            </ul>
+                            <span class="interactive-badge">اضغط للدخول</span>
+                        </div>
                     </div>
-                </div>
                 </a>
-                <!-- Room 4 -->
-             <a href="digital.html">
-                <div class="room-card fade-in">
-                    <img src="https://cdn1-m.alittihad.ae/assets/images/Articles/750x425/2019/9/2019924133345340LP.jpg?v=7&width=1300" class="room-img">
-                    <div class="room-content">
-                        <h3>العصر الرقمي</h3>
-                        <ul>
-                            <li>الحواسيب الأولى</li>
-                            <li>تطور الإنترنت</li>
-                            <li>الذكاء الاصطناعي</li>
-                        </ul>
-                        <span class="interactive-badge"> اضغط للدخول</span>
+
+                <a href="digital.html">
+                    <div class="room-card fade-in">
+                        <img src="https://cdn1-m.alittihad.ae/assets/images/Articles/750x425/2019/9/2019924133345340LP.jpg?v=7&width=1300" class="room-img">
+                        <div class="room-content">
+                            <h3>العصر الرقمي</h3>
+                            <ul>
+                                <li>الحواسيب الأولى</li>
+                                <li>تطور الإنترنت</li>
+                                <li>الذكاء الاصطناعي</li>
+                            </ul>
+                            <span class="interactive-badge">اضغط للدخول</span>
+                        </div>
                     </div>
-                </div>
-             </a>
-                <!-- Room 5 -->
-            <a href="technology.html">
-                <div class="room-card fade-in">
-                    <img src="https://www.maspero.eg/image/750/450/2022/12/16716172200.jpg" class="room-img">
-                    <div class="room-content">
-                        <h3>التكنولوجيا في مصر الحديثة</h3>
-                        <ul>
-                            <li>المدن الذكية</li>
-                            <li>التحول الرقمي</li>
-                            <li>الشركات الناشئة</li>
-                        </ul>
-                        <span class="interactive-badge">اضغط للدخول </span>
+                </a>
+
+                <a href="technology.html">
+                    <div class="room-card fade-in">
+                        <img src="https://www.maspero.eg/image/750/450/2022/12/16716172200.jpg" class="room-img">
+                        <div class="room-content">
+                            <h3>التكنولوجيا في مصر الحديثة</h3>
+                            <ul>
+                                <li>المدن الذكية</li>
+                                <li>التحول الرقمي</li>
+                                <li>الشركات الناشئة</li>
+                            </ul>
+                            <span class="interactive-badge">اضغط للدخول</span>
+                        </div>
                     </div>
-                </div>
-           </a>
-                <!-- Room 6 -->
-            <a href="travel.html">
-                <div class="room-card fade-in">
-                    <img src="https://vid.alarabiya.net/images/2023/06/11/ac769da3-da47-436e-9f2e-b8bb47bc0df2/ac769da3-da47-436e-9f2e-b8bb47bc0df2_16x9_600x338.jpg" class="room-img">
-                    <div class="room-content">
-                        <h3>التكنولوجيا في السياحة والطيران</h3>
-                        <ul>
-                            <li>أنظمة حجز الطيران</li>
-                            <li>GDS</li>
-                            <li>المطارات الذكية</li>
-                        </ul>
-                        <span class="interactive-badge"> اضغط للدخول</span>
+                </a>
+
+                <a href="travel.html">
+                    <div class="room-card fade-in">
+                        <img src="https://vid.alarabiya.net/images/2023/06/11/ac769da3-da47-436e-9f2e-b8bb47bc0df2/ac769da3-da47-436e-9f2e-b8bb47bc0df2_16x9_600x338.jpg" class="room-img">
+                        <div class="room-content">
+                            <h3>التكنولوجيا في السياحة والطيران</h3>
+                            <ul>
+                                <li>أنظمة حجز الطيران</li>
+                                <li>GDS</li>
+                                <li>المطارات الذكية</li>
+                            </ul>
+                            <span class="interactive-badge">اضغط للدخول</span>
+                        </div>
                     </div>
-                </div>
-           </a>
-                <!-- Room 7 -->
-                 <a href="TechModern.html">
-                <div class="room-card fade-in">
-                    <img src="https://cdn1-m.alittihad.ae/store/archive/image/2025/2/15/46f6c7e8-d719-43b1-8625-292dcbfc2eed.png?width=1300" class="room-img">
-                    <div class="room-content">
-                        <h3>مستقبل التكنولوجيا</h3>
-                        <ul>
-                            <li>الروبوتات</li>
-                            <li>الفضاء</li>
-                            <li>المدن المستدامة</li>
-                        </ul>
-                        <span class="interactive-badge">اضغط للدخول </span>
+                </a>
+
+                <a href="TechModern.html">
+                    <div class="room-card fade-in">
+                        <img src="https://cdn1-m.alittihad.ae/store/archive/image/2025/2/15/46f6c7e8-d719-43b1-8625-292dcbfc2eed.png?width=1300" class="room-img">
+                        <div class="room-content">
+                            <h3>مستقبل التكنولوجيا</h3>
+                            <ul>
+                                <li>الروبوتات</li>
+                                <li>الفضاء</li>
+                                <li>المدن المستدامة</li>
+                            </ul>
+                            <span class="interactive-badge">اضغط للدخول</span>
+                        </div>
                     </div>
-                </div>
-           </a> 
+                </a>
             </div>
         </div>
     </section>
 
+    <!-- مميزات المتحف -->
     <section id="features">
     <div class="container">
         <h2 class="section-title">مميزات المتحف</h2>
 
         <div class="features-wrapper">
 
-
-
             <div class="feature-item fade-in">
-                <div class="feature-icon">🤖</div>
+                <div class="feature-icon"><i class="fas fa-robot"></i></div>
                 <h3>مرشد ذكي بالذكاء الاصطناعي</h3>
-                <p>
-                    نظام تفاعلي يعتمد على الذكاء الاصطناعي 
-                    للإجابة على أسئلة الزوار وتقديم شرح مبسط 
-                    ومناسب لكل فئة عمرية.
-                </p>
+                <p>نظام تفاعلي يجاوب على أسئلة الزوار ويشرح بطريقة سهلة وممتعة.</p>
             </div>
 
             <div class="feature-item fade-in">
-                <div class="feature-icon">🧩</div>
-                <h3>تجارب تفاعلية ومحاكاة</h3>
-                <p>
-                    محاكاة لبناء الأهرامات، تشغيل المحرك البخاري، 
-                    وتجربة إرسال رسالة عبر التلغراف بطريقة عملية.
-                </p>
+                <div class="feature-icon"><i class="fas fa-vr-cardboard"></i></div>
+                <h3>تجارب تفاعلية</h3>
+                <p>جرب بنفسك بناء الأهرامات وتشغيل المحركات القديمة.</p>
             </div>
 
             <div class="feature-item fade-in">
-                <div class="feature-icon">📱</div>
-                <h3>تطبيق مرافق للمتحف</h3>
-                <p>
-                    تطبيق ذكي يساعد الزوار على التنقل بين الأقسام، 
-                    حفظ الملاحظات، والحصول على محتوى إضافي حصري.
-                </p>
+                <div class="feature-icon"><i class="fas fa-mobile-alt"></i></div>
+                <h3>تطبيق ذكي</h3>
+                <p>تطبيق يساعدك تتنقل جوه المتحف بسهولة ويضيف محتوى إضافي.</p>
             </div>
 
             <div class="feature-item fade-in">
-                <div class="feature-icon">🌍</div>
-                <h3>دعم لغات متعددة</h3>
-                <p>
-                    إمكانية تصفح المحتوى باللغة العربية والإنجليزية 
-                    لتسهيل وصول المعلومات للزوار من مختلف الجنسيات.
-                </p>
+                <div class="feature-icon"><i class="fas fa-globe"></i></div>
+                <h3>دعم لغات</h3>
+                <p>المتحف متاح بالعربي والإنجليزي عشان كل الزوار.</p>
             </div>
 
             <div class="feature-item fade-in">
-                <div class="feature-icon">🎓</div>
-                <h3>محتوى تعليمي تفاعلي</h3>
-                <p>
-                    أنشطة تعليمية ومسابقات رقمية مخصصة للطلاب 
-                    لتعزيز الفهم بطريقة ممتعة وعملية.
-                </p>
+                <div class="feature-icon"><i class="fas fa-graduation-cap"></i></div>
+                <h3>تعليم تفاعلي</h3>
+                <p>محتوى تعليمي ومسابقات للطلبة بشكل ممتع.</p>
             </div>
 
         </div>
     </div>
 </section>
-
-
     <!-- الفوتر -->
     <footer>
-            <div class="social-links">
-        <a href="https://www.facebook.com/share/1F8B6kH2L1/" target="_blank" class="social-link">
-            <i class="fab fa-facebook-f"></i>
-        </a>
-
-        <a href="https://www.instagram.com/techversegypt?igsh=aTE0Mno1eHRsMWlz" target="_blank" class="social-link">
-            <i class="fab fa-instagram"></i>
-        </a>
-
-         <a href="https://x.com/TechVerseEGY" target="_blank" class="social-link">
-            <i class="fab fa-twitter"></i>
-        </a>
-    </div>
-        <p>© 2026 - TechVerse Museum     </p>
+        <div class="social-links">
+            <a href="https://www.facebook.com/share/1F8B6kH2L1/" target="_blank" class="social-link">
+                <i class="fab fa-facebook-f"></i>
+            </a>
+            <a href="https://www.instagram.com/techversegypt?igsh=aTE0Mno1eHRsMWlz" target="_blank" class="social-link">
+                <i class="fab fa-instagram"></i>
+            </a>
+            <a href="https://x.com/TechVerseEGY" target="_blank" class="social-link">
+                <i class="fab fa-twitter"></i>
+            </a>
+        </div>
+        <p>© 2026 - TechVerse Museum</p>
     </footer>
 
-    <script>
-        // تأثير الظهور عند التمرير
-        const elements = document.querySelectorAll(".fade-in");
+    <!-- AI Chat Widget -->
+    <div class="ai-chat-widget" title="مرشد المتحف الذكي">
+        <i class="fas fa-robot" style="font-size: 24px; color: #000;"></i>
+    </div>
 
+    <div class="ai-chat-container" id="aiChatContainer">
+        <div class="ai-chat-header">
+            <i class="fas fa-robot"></i> مرشد المتحف الذكي
+        </div>
+        <div class="ai-chat-messages" id="aiChatMessages">
+            <div class="message ai-message">
+                مرحباً! أنا مرشدك الذكي في متحف التطور التكنولوجي. يمكنني مساعدتك في:
+                <br>• معرفة تفاصيل أي غرفة
+                <br>• شرح التكنولوجيا ببساطة
+                <br>• اقتراح مسار زيارة مثالي
+                <br><br>اسألني أي شيء عن المتحف! 🤖
+            </div>
+        </div>
+        <div class="typing-indicator" id="typingIndicator">
+            <i class="fas fa-robot"></i> يفكر المرشد الذكي...
+        </div>
+        <div class="ai-chat-input">
+            <input type="text" id="aiChatInput" placeholder="اكتب سؤالك هنا..." autocomplete="off">
+        </div>
+    </div>
+
+    <script>
+        // بيانات المتحف (محدودة بمحتوى الصفحة فقط)
+        const museumData = {
+            rooms: {
+
+                "الحضاره القديمه ": {
+                    description: "غرفة تروي قصة الهندسة المصرية القديمة مع التركيز على الأهرامات ونظام قياس النيل والطب القديم.",
+                    topics: ["هندسة الأهرامات المصرية", "نظام قياس النيل", "الأنظمة الطبية والكتابة"]
+                },
+                "الثورة الصناعيه": {
+                    description: "استكشف تأثير المحرك البخاري والتصنيع الميكانيكي والسكك الحديدية على العالم.",
+                    topics: ["المحرك البخاري", "التصنيع الميكانيكي", "السكك الحديدية"]
+                },
+                "ثورة الاتصالات": {
+                    description: "رحلة عبر تطور الاتصالات من التلغراف إلى الهاتف والأقمار الصناعية.",
+                    topics: ["التلغراف", "الهاتف", "الأقمار الصناعية"]
+                },
+                "العصر الرقمي": {
+                    description: "من الحواسيب الأولى إلى الإنترنت والذكاء الاصطناعي الحديث.",
+                    topics: ["الحواسيب الأولى", "تطور الإنترنت", "الذكاء الاصطناعي"]
+                },
+                "التكنولوجيا في مصر الحديثه": {
+                    description: "اكتشف المدن الذكية والتحول الرقمي والشركات الناشئة في مصر.",
+                    topics: ["المدن الذكية", "التحول الرقمي", "الشركات الناشئة"]
+                },
+                "التكنولوجيا في السياحه والطيران": {
+                    description: "تعرف على أنظمة الحجز المتقدمة وGDS والمطارات الذكية.",
+                    topics: ["أنظمة حجز الطيران", "GDS", "المطارات الذكية"]
+                },
+                "مستقبل التكنولوجيا": {
+                    description: "نظّر للمستقبل مع الروبوتات والفضاء والمدن المستدامة.",
+                    topics: ["الروبوتات", "الفضاء", "المدن المستدامة"]
+                }
+            },
+            features: [
+                "مرشد ذكي بالذكاء الاصطناعي",
+                "تجارب تفاعلية ومحاكاة", 
+                "تطبيق مرافق للمتحف",
+                "دعم لغات متعددة",
+                "محتوى تعليمي تفاعلي"
+            ]
+        };
+
+        // AI Chat Functionality
+        const aiChatWidget = document.querySelector('.ai-chat-widget');
+        const aiChatContainer = document.getElementById('aiChatContainer');
+        const aiChatInput = document.getElementById('aiChatInput');
+        const aiChatMessages = document.getElementById('aiChatMessages');
+        const typingIndicator = document.getElementById('typingIndicator');
+
+        let isChatOpen = false;
+
+        // Toggle Chat
+        aiChatWidget.addEventListener('click', () => {
+            isChatOpen = !isChatOpen;
+            aiChatContainer.classList.toggle('active');
+        });
+
+        // AI Response Function
+        function getAIResponse(userMessage) {
+            const message = userMessage.toLowerCase().trim();
+            
+            // Show typing indicator
+            typingIndicator.classList.add('active');
+            
+            setTimeout(() => {
+                typingIndicator.classList.remove('active');
+                
+                let response = "";
+                
+                // Check for room queries
+                for (let [roomName, data] of Object.entries(museumData.rooms)) {
+                    if (message.includes(roomName.toLowerCase()) || 
+                        data.topics.some(topic => message.includes(topic.toLowerCase()))) {
+                        response = `📍 **${roomName}**\n\n${data.description}\n\n🔹 ${data.topics.join(' | ')}\n\nاضغط على البطاقة في الصفحة للدخول!`;
+                        break;
+                    }
+                }
+                
+                // General museum info
+                if (!response && (message.includes('متحف') || message.includes('المتحف') || message.includes('مرحبا'))) {
+                    response = "🎪 مرحباً بك في متحف التطور التكنولوجي!\n\nهذا المتحف يأخذك في رحلة عبر الزمن من هندسة الأهرامات القديمة إلى مستقبل الذكاء الاصطناعي والروبوتات.\n\nيمكنك زيارة 7 غرف رئيسية كل واحدة تحكي قصة تطور تكنولوجي مختلف.";
+                }
+                
+                // Features query
+                if (!response && (message.includes('مميزات') || message.includes('مميزات'))) {
+                    response = "✨ **مميزات المتحف:**\n\n" + 
+                              "🤖 مرشد ذكي بالذكاء الاصطناعي\n" +
+                              "🧩 تجارب تفاعلية ومحاكاة\n" +
+                              "📱 تطبيق مرافق للمتحف\n" +
+                              "🌍 دعم لغات متعددة\n" +
+                              "🎓 محتوى تعليمي تفاعلي";
+                }
+                
+                // Default response
+                if (!response) {
+                    response = "عذراً، لا أفهم سؤالك تماماً 😅\n\nجرب أن تسألني عن:\n• أي غرفة من غرف المتحف\n• مميزات المتحف\n• تكنولوجيا معينة\n\nمثال: 'شرح غرفة الأهرامات' أو 'ما هي مميزات المتحف؟'";
+                }
+                
+                addMessage(response, 'ai-message');
+                aiChatMessages.scrollTop = aiChatMessages.scrollHeight;
+            }, 1500);
+        }
+
+        // Add message to chat
+        function addMessage(text, className) {
+            const messageDiv = document.createElement('div');
+            messageDiv.className = `message ${className}`;
+            messageDiv.innerHTML = text;
+            aiChatMessages.appendChild(messageDiv);
+        }
+
+        // Handle input
+        aiChatInput.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter' && aiChatInput.value.trim()) {
+                const userMessage = aiChatInput.value.trim();
+                addMessage(userMessage, 'user-message');
+                aiChatInput.value = '';
+                aiChatMessages.scrollTop = aiChatMessages.scrollHeight;
+                getAIResponse(userMessage);
+            }
+        });
+
+        // باقي الـ JavaScript للتفاعلات الأخرى
+        const elements = document.querySelectorAll(".fade-in");
         const observer = new IntersectionObserver(entries => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
@@ -705,13 +896,34 @@
 
         elements.forEach(el => observer.observe(el));
 
-        // قائمة الموبايل
         const hamburger = document.querySelector(".hamburger");
         const navLinks = document.querySelector(".nav-links");
 
         hamburger.addEventListener("click", () => {
             navLinks.classList.toggle("active");
         });
+
+        // Close chat when clicking outside
+        document.addEventListener('click', (e) => {
+            if (!aiChatWidget.contains(e.target) && !aiChatContainer.contains(e.target)) {
+                aiChatContainer.classList.remove('active');
+                isChatOpen = false;
+            }
+        });
     </script>
+
+    <style>
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+    
 </body>
-</html>               
+</html>
